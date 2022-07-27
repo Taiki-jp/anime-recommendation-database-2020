@@ -1,3 +1,6 @@
 html folder/
 inputs/
 outputs/
+__pycache__/
+
+memo.md
