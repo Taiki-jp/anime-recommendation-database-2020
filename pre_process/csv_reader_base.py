@@ -1,5 +1,6 @@
 import os
 from typing import Callable, List
+from utils.my_type import *
 
 # from utils.py_color import PyColor
 import pandas as pd
@@ -8,35 +9,31 @@ import pandas as pd
 class CsvReaderBase:
     def __init__(
         self,
-        file_name: str,
+        file_name: FileName,
         verbose: int = 0,
-        inputs_dir: str = "inputs",
+        inputs_dir: DirName = "inputs",
         columns: List[str] = [],
         names: List[str] = [],
     ):
-        self.inputs_dir: str = inputs_dir
-        self.file_name: str = file_name
-        self.verbose: int = verbose
-        self.columns: str = columns
-        self.names: List[str] = names
+        self.inputs_dir = inputs_dir
+        self.file_name = file_name
+        self.verbose = verbose
+        self.columns = columns
+        self.names = names
 
-    # 絶対パスを取得
-    def get_full_path(self) -> str:
-        return os.path.join(self.inputs_dir, self.file_name)
-    
-    # 複数ファイルが渡されたときに対応（複数ファイルの階層は同じ）
-    def get_mul_path(self) -> List[str]:
-        
+    # 相対パスを取得
+    def get_full_path(self) -> RelPath:
+        return RelPath(os.path.join(self.inputs_dir, self.file_name))
 
     # CSVファイル読み込み
-    def read_csv(self) -> Callable:
+    def read_csv(self) -> Callable[[], pd.DataFrame]:
         file_path = self.get_full_path()
 
         def _read() -> pd.DataFrame:
             if self.verbose == 0:
                 print(
                     # PyColor.GREEN,
-                    f"*** read {file_path} ***",
+                    f"*** READ {file_path} ***",
                     # PyColor.END,
                 )
             elif self.verbose == 1:
@@ -63,4 +60,5 @@ class CsvReaderBase:
 if __name__ == "__main__":
 
     csv_reader = CsvReaderBase(file_name="anime_with_synopsis.csv", verbose=0)
-    csv_reader.read_csv()
+    AWS_df = csv_reader.read_csv()
+    print(AWS_df.head())

@@ -4,12 +4,19 @@
     // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        // {
+        //     "name": "Python モジュール",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "module": "pre_process.${fileBasenameNoExtension}",
+        //     "justMyCode": true
+        // },
         {
-            "name": "Python モジュール",
+            "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "module": "pre_process.${fileBasenameNoExtension}",
-            "justMyCode": true
+            "program": "${file}",
+            "console": "integratedTerminal"
         }
     ]
 }
