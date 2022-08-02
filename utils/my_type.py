@@ -16,4 +16,4 @@ FileAlias = NewType("FileAlias", str)
 # ファイルのエイリアスと相対パスの辞書
 FileDict = NewType("FileDict", Dict[FileAlias, RelPath])
 # エイリアスとデータフレームの辞書
-DfDict = NewType("DfDict", Dict[FileAlias, List[pd.DataFrame]])
+DfDict = NewType("DfDict", Dict[FileAlias, pd.DataFrame])

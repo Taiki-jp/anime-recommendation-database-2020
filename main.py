@@ -17,7 +17,9 @@ def make_df_d(filepath_d: FileDict) -> DfDict:
 
 
 if __name__ == "__main__":
+    ALIAS = "animelist"
     inputs_dir = DirName("inputs")
     filepath_d = make_key_alias_from_dir(inputs_dir=inputs_dir)
     df_d = make_df_d(filepath_d=filepath_d)
+    df_d[ALIAS]
     main()
